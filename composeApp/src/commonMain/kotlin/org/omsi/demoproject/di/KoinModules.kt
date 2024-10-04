@@ -7,7 +7,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-import org.omsi.demoproject.repository.CanRepository
+import org.omsi.demoproject.repository.NetworkRepository
 import org.omsi.demoproject.viewmodel.MainViewModel
 
 val providehttpClientModule = module {
@@ -30,15 +30,15 @@ val provideRepositoryModule = module {
 
  */
 
-val provideCanRepositoryModule = module {
-    single<CanRepository> { CanRepository() }
+val provideNetworkRepositoryModule = module {
+    single<NetworkRepository> { NetworkRepository() }
 }
 
 val provideviewModelModule = module {
     viewModelOf(::MainViewModel)
 }
 
-fun appModule() = listOf(providehttpClientModule, provideCanRepositoryModule, provideviewModelModule)
+fun appModule() = listOf(providehttpClientModule, provideNetworkRepositoryModule, provideviewModelModule)
 
 
 

@@ -15,18 +15,20 @@ compose-plugin = "1.6.11"
 junit = "4.13.2"
 kotlin = "2.0.20"
 kotlinx-coroutines = "1.8.1"
-ktor = "2.3.7"
+ktor = "3.0.0-rc-1"
 #koin-compose="1.2.0-Beta4"
 koin = "4.0.0"
 kamel="1.0.0-beta.7"
 #Logging
 logback = "1.5.3"
 kotlin-logging = "6.0.4"
+coroutines = "1.9.0"
 
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin"}
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
@@ -47,6 +49,8 @@ ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "k
 kotlin-serialization = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref="ktor"}
 media-kamel = {module="media.kamel:kamel-image", version.ref="kamel"}
 ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotiation", version.ref= "ktor"}
+ktor-network = {module = "io.ktor:ktor-network", version.ref= "ktor"}
+ktor-utils = {module = "io.ktor:ktor-utils", version.ref= "ktor"}
 koin-compose = {module="io.insert-koin:koin-compose", version.ref = "koin"}
 koin-core = {module="io.insert-koin:koin-core", version.ref = "koin"}
 koin-core-viewmodel = {module="io.insert-koin:koin-core-viewmodel", version.ref = "koin"}
@@ -54,6 +58,9 @@ koin-core-viewmodel-navigation = {module="io.insert-koin:koin-core-viewmodel-nav
 
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin-logging" }
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 
 [bundles]

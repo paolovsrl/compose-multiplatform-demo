@@ -22,6 +22,7 @@ dependencyResolutionManagement {
                 includeGroupAndSubgroups("androidx")
                 includeGroupAndSubgroups("com.android")
                 includeGroupAndSubgroups("com.google")
+                maven("https://maven.universablockchain.com/")//mp_tools, for string format
             }
         }
         mavenCentral()

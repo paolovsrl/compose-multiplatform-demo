@@ -1,14 +1,16 @@
 package org.omsi.demoproject.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.lighthousegames.logging.logging
-import org.omsi.demoproject.repository.CanRepository
+import org.omsi.demoproject.repository.NetworkRepository
 
 open class MainViewModel : ViewModel(), KoinComponent {
 
-    val canRepository: CanRepository by inject()
+    val networkRepository: NetworkRepository by inject()
 
     var number = 1
 
@@ -19,15 +21,17 @@ open class MainViewModel : ViewModel(), KoinComponent {
 
 
     fun connect(){
-        log.info{"connect"}
-        canRepository.openSocket {
-            log.info{"message: $it"}
+        viewModelScope.launch {
+            networkRepository.openSocket {
+                log.info{"message: $it"}
+            }
         }
+        log.info{"connected"}
     }
 
     fun disconnect() {
-        log.info{"disconnect"}
-        //TODO("Not yet implemented")
+        networkRepository.closeSocket()
+        log.info{"disconnected"}
     }
 
     fun printNumber(){

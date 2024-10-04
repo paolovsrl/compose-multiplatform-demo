@@ -38,8 +38,15 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.android)
+            implementation(libs.ktor.client.okhttp)
+        //    implementation ("io.ktor:ktor-utils-jvm:$2.3.12")
+            implementation("io.ktor:ktor-client-core-jvm:2.3.12")
+            implementation("io.ktor:ktor-client-json-jvm:2.3.12")
+            implementation(libs.kotlinx.coroutines.android)
+
         }
         commonMain.dependencies {
+            //implementation(kotlin.stdlib)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -50,6 +57,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.bundles.ktor)
             implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.network)
+          //  implementation("io.ktor:ktor-network-tls:2.3.12")
+            implementation(libs.ktor.utils)
+
             implementation(libs.kotlin.serialization)
             implementation(libs.media.kamel)
             implementation(libs.koin.compose)
@@ -58,16 +70,19 @@ kotlin {
             implementation(libs.koin.core.viewmodel.navigation)
 
             implementation("org.lighthousegames:logging:1.5.0")
-            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.0")
 
-            implementation(libs.logback.classic)
-            implementation(libs.kotlin.logging)
+            implementation(libs.kotlinx.coroutines.core)
+
+            implementation("net.sergeych:mp_stools:1.5.1")//string formatting
 
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
             implementation(libs.ktor.client.cio)
+
+            implementation(libs.logback.classic)
+            implementation(libs.kotlin.logging)
         }
 
         iosMain.dependencies {
