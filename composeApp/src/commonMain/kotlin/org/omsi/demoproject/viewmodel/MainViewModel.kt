@@ -1,7 +1,12 @@
 package org.omsi.demoproject.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -10,6 +15,7 @@ import org.omsi.demoproject.repository.NetworkRepository
 
 open class MainViewModel : ViewModel(), KoinComponent {
 
+    var status by mutableStateOf(false)
     val networkRepository: NetworkRepository by inject()
 
     var number = 1

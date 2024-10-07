@@ -32,7 +32,32 @@ kotlin {
     }
 
     sourceSets {
-        val desktopMain by getting
+        all {
+            languageSettings {
+                optIn("androidx.compose.material3.ExperimentalMaterial3Api")
+                optIn("org.jetbrains.compose.resources.ExperimentalResourceApi")
+            }
+        }
+
+        val commonMain by getting
+        val jbMain by creating {
+            dependsOn(commonMain)
+        }
+        val desktopMain by getting {
+            dependsOn(jbMain)
+        }
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependsOn(jbMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
+       /* val wasmJsMain by getting {
+            dependsOn(jbMain)
+        }*/
 
         androidMain.dependencies {
             implementation(compose.preview)
@@ -46,14 +71,16 @@ kotlin {
 
         }
         commonMain.dependencies {
-            //implementation(kotlin.stdlib)
+
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+           // implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.bundles.ktor)
             implementation(libs.ktor.client.content.negotiation)
@@ -65,15 +92,23 @@ kotlin {
             implementation(libs.kotlin.serialization)
             implementation(libs.media.kamel)
             implementation(libs.koin.compose)
-            implementation(libs.koin.core)
-            implementation(libs.koin.core.viewmodel)
-            implementation(libs.koin.core.viewmodel.navigation)
+            //implementation(libs.koin.core)
+           // implementation(libs.koin.core.viewmodel)
+           // implementation(libs.koin.core.viewmodel.navigation)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose.viewmodel.navigation)
+
 
             implementation("org.lighthousegames:logging:1.5.0")
 
             implementation(libs.kotlinx.coroutines.core)
 
             implementation("net.sergeych:mp_stools:1.5.1")//string formatting
+
+            implementation(libs.androidx.navigation.compose)
+            implementation(libs.navigation.common)
+
+            implementation(libs.core.bundle)
 
         }
         desktopMain.dependencies {

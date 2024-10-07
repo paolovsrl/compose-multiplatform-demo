@@ -5,7 +5,9 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 import org.omsi.demoproject.repository.NetworkRepository
 import org.omsi.demoproject.viewmodel.MainViewModel
@@ -28,18 +30,18 @@ val provideRepositoryModule = module {
     single<Repository> { Repository(get()) }
 }
 
- */
+
 
 val provideNetworkRepositoryModule = module {
     single<NetworkRepository> { NetworkRepository() }
 }
 
-val provideviewModelModule = module {
+val viewModelModule = module {
     viewModelOf(::MainViewModel)
 }
 
-fun appModule() = listOf(providehttpClientModule, provideNetworkRepositoryModule, provideviewModelModule)
-
+fun appModule() = listOf(providehttpClientModule, provideNetworkRepositoryModule, viewModelModule)
+*/
 
 
 /*
@@ -50,3 +52,5 @@ fun appModule() = module {
 }
 
  */
+
+

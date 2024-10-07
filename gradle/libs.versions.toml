@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.2"
 android-compileSdk = "34"
 android-minSdk = "23"
 android-targetSdk = "34"
@@ -8,13 +8,14 @@ androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.1.4"
 androidx-core-ktx = "1.13.1"
 androidx-espresso-core = "3.6.1"
-androidx-lifecycle = "2.8.0"
+androidx-lifecycle = "2.8.3-rc01"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
-compose-plugin = "1.6.11"
+androidx-navigation ="2.8.0-alpha10"
+compose-plugin = "1.7.0-rc01"
+coreBundle = "1.0.1"
 junit = "4.13.2"
 kotlin = "2.0.20"
-kotlinx-coroutines = "1.8.1"
 ktor = "3.0.0-rc-1"
 #koin-compose="1.2.0-Beta4"
 koin = "4.0.0"
@@ -26,9 +27,9 @@ coroutines = "1.9.0"
 
 
 [libraries]
+core-bundle = { module = "org.jetbrains.androidx.core:core-bundle", version.ref = "coreBundle" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin"}
-
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
@@ -38,8 +39,9 @@ androidx-material = { group = "com.google.android.material", name = "material", 
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
-kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+
 
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -55,13 +57,18 @@ koin-compose = {module="io.insert-koin:koin-compose", version.ref = "koin"}
 koin-core = {module="io.insert-koin:koin-core", version.ref = "koin"}
 koin-core-viewmodel = {module="io.insert-koin:koin-core-viewmodel", version.ref = "koin"}
 koin-core-viewmodel-navigation = {module="io.insert-koin:koin-core-viewmodel-navigation", version.ref = "koin"}
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin-logging" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
 
+androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation" }
+navigation-common = { module = "org.jetbrains.androidx.navigation:navigation-common", version.ref = "androidx-navigation" }
 
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-content-negotiation"]
