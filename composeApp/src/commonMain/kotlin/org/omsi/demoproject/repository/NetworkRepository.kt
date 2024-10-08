@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.io.readByteArray
 import net.sergeych.sprintf.sprintf
+import org.koin.core.component.KoinComponent
 import org.lighthousegames.logging.logging
 import kotlin.coroutines.CoroutineContext
 

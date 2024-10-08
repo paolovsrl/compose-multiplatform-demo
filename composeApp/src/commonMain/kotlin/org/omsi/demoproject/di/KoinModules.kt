@@ -1,14 +1,17 @@
 package org.omsi.demoproject.di
 
+import androidx.room.RoomDatabase
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
-import org.koin.dsl.koinApplication
 import org.koin.dsl.module
+import org.omsi.demoproject.db.AppDatabase
+import org.omsi.demoproject.db.getAppDatabase
 import org.omsi.demoproject.repository.NetworkRepository
 import org.omsi.demoproject.viewmodel.MainViewModel
 
@@ -23,34 +26,17 @@ val providehttpClientModule = module {
 }
 
 
-/*
-In case of dependency in the constructor: get()
-e.g.
-val provideRepositoryModule = module {
-    single<Repository> { Repository(get()) }
-}
-
-
-
-val provideNetworkRepositoryModule = module {
-    single<NetworkRepository> { NetworkRepository() }
-}
+//Room DB:
+expect fun appDatabaseModule(): Module
 
 val viewModelModule = module {
     viewModelOf(::MainViewModel)
 }
 
-fun appModule() = listOf(providehttpClientModule, provideNetworkRepositoryModule, viewModelModule)
-*/
-
-
-/*
-fun appModule() = module {
-    single { CanRepository() }
-
-    viewModelDefinition { MainViewModel() }
+val repositoryModule = module {
+    singleOf(::NetworkRepository)
 }
 
- */
 
+val getDbModule = { appDatabaseModule() }
 

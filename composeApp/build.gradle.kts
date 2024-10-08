@@ -8,9 +8,14 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.ksp)//ROOM
+    alias(libs.plugins.room)//ROOM
 }
 
 kotlin {
+    sourceSets.commonMain {
+        kotlin.srcDir("build/generated/ksp/metadata")
+    }
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -28,6 +33,8 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+           // Required when using NativeSQLiteDriver
+            linkerOpts.add("-lsqlite3")
         }
     }
 
@@ -68,6 +75,8 @@ kotlin {
             implementation("io.ktor:ktor-client-core-jvm:2.3.12")
             implementation("io.ktor:ktor-client-json-jvm:2.3.12")
             implementation(libs.kotlinx.coroutines.android)
+            implementation("io.insert-koin:koin-android-ext:3.0.2")
+            runtimeOnly("io.insert-koin:koin-android:4.0.0")
 
         }
         commonMain.dependencies {
@@ -88,7 +97,6 @@ kotlin {
             implementation(libs.ktor.network)
           //  implementation("io.ktor:ktor-network-tls:2.3.12")
             implementation(libs.ktor.utils)
-
             implementation(libs.kotlin.serialization)
             implementation(libs.media.kamel)
             implementation(libs.koin.compose)
@@ -97,18 +105,15 @@ kotlin {
            // implementation(libs.koin.core.viewmodel.navigation)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.koin.compose.viewmodel.navigation)
-
-
-            implementation("org.lighthousegames:logging:1.5.0")
-
+            implementation(libs.logging)
             implementation(libs.kotlinx.coroutines.core)
-
-            implementation("net.sergeych:mp_stools:1.5.1")//string formatting
-
+            implementation(libs.mp.stools)//string formatting
             implementation(libs.androidx.navigation.compose)
             implementation(libs.navigation.common)
-
             implementation(libs.core.bundle)
+            //Room
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
 
         }
         desktopMain.dependencies {
@@ -123,6 +128,34 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+    }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
+dependencies {
+implementation(libs.testng)
+    //    ksp(libs.androidx.room.compiler)
+    // room
+ /*  add("kspAndroid", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
+  */  // Room: replaced with above ^
+  //  add("kspCommonMainMetadata", libs.androidx.room.compiler)
+
+    //test:
+    listOf(
+        "kspAndroid",
+        "kspDesktop",
+        "kspIosSimulatorArm64",
+        "kspIosX64",
+        "kspIosArm64",
+        "kspCommonMainMetadata",
+    ).forEach {
+        add(it, libs.androidx.room.compiler)
     }
 }
 
@@ -160,6 +193,12 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
+    }
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("org.hamcrest:hamcrest-core:1.1")).using(module("junit:junit:4.10"))
+            substitute(module("com.google.guava:listenablefuture:1.0")).using(module("com.google.guava:guava:16.0.1"))
+        }
     }
 }
 

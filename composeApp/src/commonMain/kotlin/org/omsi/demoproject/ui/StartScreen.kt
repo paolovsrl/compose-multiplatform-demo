@@ -41,6 +41,10 @@ fun HomeScreen (navigateTo:(String) -> Unit = {}){
             Text(if(viewModel.status) "stop" else "start")
         }
 
+        Button(onClick = {viewModel.addEntry()}, content = {
+            Text("Add Entry")
+        })
+
         Button(modifier = Modifier.padding(start = 20.dp, top = 10.dp),
             onClick = {
                 navigateTo(AppScreen.Parameter.name)
