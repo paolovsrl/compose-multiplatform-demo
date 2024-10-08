@@ -1,13 +1,14 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop. 
+# Compose Multiplatform Demo App
+This is a Compose-Kotlin Multiplatform project targeting Android, iOS, Desktop. 
 
-It can be used as a starting template with MVVM architecture, including:
+It can be used as a starting template with **MVVM** architecture, including:
 
-+support for KOIN DI
+- [x] support for Koin DI
 
-+logback for desktop logging
+- [x] logback for desktop logging
 
-+UDP with KTOR
+- [x] UDP with Ktor
 
-+ROOM integration
+- [x] Room integration
 
--not tested on iOS 
+- [ ] tested on iOS
