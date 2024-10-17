@@ -1,9 +1,11 @@
 package org.omsi.demoproject.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -14,8 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.ktor.client.utils.EmptyContent.status
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import org.omsi.demoproject.ui.theme.CustomTheme
 import org.omsi.demoproject.viewmodel.MainViewModel
 
 
@@ -28,8 +32,8 @@ fun HomeScreen (navigateTo:(String) -> Unit = {}){
 
 
 
-    Column (horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()){
-        Button(modifier = Modifier.padding(start = 20.dp, top = 10.dp),
+    Column (horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()){
+        Button(modifier = Modifier,
             onClick = {
                 if(!viewModel.status){
                     viewModel.connect()
@@ -45,13 +49,13 @@ fun HomeScreen (navigateTo:(String) -> Unit = {}){
             Text("Add Entry")
         })
 
-        Button(modifier = Modifier.padding(start = 20.dp, top = 10.dp),
+        Button(modifier = Modifier,
             onClick = {
                 navigateTo(AppScreen.Parameter.name)
             }) {
             Text("Parameter")
         }
-        Button(modifier = Modifier.padding(start = 20.dp, top = 10.dp),
+        Button(modifier = Modifier,
             onClick = {
                navigateTo(AppScreen.Settings.name)
             }) {
@@ -59,4 +63,12 @@ fun HomeScreen (navigateTo:(String) -> Unit = {}){
         }
     }
 
+}
+
+@Composable
+@Preview
+fun StartScreenPreview(){
+   CustomTheme {
+        HomeScreen()
+    }
 }

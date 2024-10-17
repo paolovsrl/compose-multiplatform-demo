@@ -153,7 +153,7 @@ implementation(libs.testng)
         "kspIosSimulatorArm64",
         "kspIosX64",
         "kspIosArm64",
-        "kspCommonMainMetadata",
+       // "kspCommonMainMetadata",
     ).forEach {
         add(it, libs.androidx.room.compiler)
     }
