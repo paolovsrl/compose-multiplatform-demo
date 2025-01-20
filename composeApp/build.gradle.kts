@@ -179,7 +179,7 @@ android {
     signingConfigs {
         create("release") {
             storeFile =
-                file("D:\\AndroidStudioProjects\\ComposeMultiplatform\\OMSI_parameters\\composeApp\\demo_keystore.jks")
+                file("src/androidMain/omsi_keystore.jks")
             storePassword = "Omsi0000"
             keyAlias = "omsi_key"
             keyPassword = "Omsi0000"
@@ -194,6 +194,10 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             signingConfig = signingConfigs.getByName("release")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard.pro"
+            )
         }
 
         applicationVariants.all {

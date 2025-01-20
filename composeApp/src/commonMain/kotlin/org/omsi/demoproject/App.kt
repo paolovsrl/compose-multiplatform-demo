@@ -9,10 +9,10 @@ import org.koin.compose.KoinContext
 import org.koin.compose.LocalKoinApplication
 import org.lighthousegames.logging.KmLogging
 import org.lighthousegames.logging.LogLevel
-import org.omsi.demoproject.di.getDbModule
-import org.omsi.demoproject.di.repositoryModule
-import org.omsi.demoproject.di.viewModelModule
-import org.omsi.demoproject.ui.TestApp
+import org.omsi.demoproject.data.di.getDbModule
+import org.omsi.demoproject.data.di.repositoryModule
+import org.omsi.demoproject.data.di.viewModelModule
+import org.omsi.demoproject.ui.screen.TestApp
 import org.omsi.demoproject.ui.theme.CustomTheme
 
 
@@ -33,7 +33,8 @@ fun App() {
         LocalKoinApplication.current.loadModules(modules = listOf(
             viewModelModule,
             repositoryModule,
-            getDbModule())
+            getDbModule()
+        )
         )
 
         CustomTheme {
